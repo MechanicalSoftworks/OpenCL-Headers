@@ -563,6 +563,23 @@ typedef union
 #endif
 }cl_char2;
 
+/* cl_char3 is identical in size, alignment and behavior to cl_char4. See section 6.1.5. */
+typedef union
+{
+    cl_char  CL_ALIGNED(4) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_char2 lo, hi; };
+#endif
+#if defined( __CL_CHAR2__)
+    __cl_char2     v2[2];
+#endif
+#if defined( __CL_CHAR4__)
+    __cl_char4     v4;
+#endif
+}cl_char3;
+
 typedef union
 {
     cl_char  CL_ALIGNED(4) s[4];
@@ -578,9 +595,6 @@ typedef union
     __cl_char4     v4;
 #endif
 }cl_char4;
-
-/* cl_char3 is identical in size, alignment and behavior to cl_char4. See section 6.1.5. */
-typedef  cl_char4  cl_char3;
 
 typedef union
 {
@@ -655,7 +669,21 @@ typedef union
 }cl_uchar4;
 
 /* cl_uchar3 is identical in size, alignment and behavior to cl_uchar4. See section 6.1.5. */
-typedef  cl_uchar4  cl_uchar3;
+typedef union
+{
+    cl_uchar  CL_ALIGNED(4) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_uchar2 lo, hi; };
+#endif
+#if defined( __CL_UCHAR2__)
+    __cl_uchar2     v2[2];
+#endif
+#if defined( __CL_UCHAR4__)
+    __cl_uchar4     v4;
+#endif
+}cl_uchar3;
 
 typedef union
 {
@@ -713,6 +741,23 @@ typedef union
 #endif
 }cl_short2;
 
+/* cl_short3 is identical in size, alignment and behavior to cl_short4. See section 6.1.5. */
+typedef union
+{
+    cl_short  CL_ALIGNED(8) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_short2 lo, hi; };
+#endif
+#if defined( __CL_SHORT2__)
+    __cl_short2     v2[2];
+#endif
+#if defined( __CL_SHORT4__)
+    __cl_short4     v4;
+#endif
+}cl_short3;
+
 typedef union
 {
     cl_short  CL_ALIGNED(8) s[4];
@@ -728,9 +773,6 @@ typedef union
     __cl_short4     v4;
 #endif
 }cl_short4;
-
-/* cl_short3 is identical in size, alignment and behavior to cl_short4. See section 6.1.5. */
-typedef  cl_short4  cl_short3;
 
 typedef union
 {
@@ -788,6 +830,23 @@ typedef union
 #endif
 }cl_ushort2;
 
+/* cl_ushort3 is identical in size, alignment and behavior to cl_ushort4. See section 6.1.5. */
+typedef union
+{
+    cl_ushort  CL_ALIGNED(8) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_ushort2 lo, hi; };
+#endif
+#if defined( __CL_USHORT2__)
+    __cl_ushort2     v2[2];
+#endif
+#if defined( __CL_USHORT4__)
+    __cl_ushort4     v4;
+#endif
+}cl_ushort3;
+
 typedef union
 {
     cl_ushort  CL_ALIGNED(8) s[4];
@@ -803,9 +862,6 @@ typedef union
     __cl_ushort4     v4;
 #endif
 }cl_ushort4;
-
-/* cl_ushort3 is identical in size, alignment and behavior to cl_ushort4. See section 6.1.5. */
-typedef  cl_ushort4  cl_ushort3;
 
 typedef union
 {
@@ -863,6 +919,23 @@ typedef union
 #endif
 }cl_half2;
 
+/* cl_half3 is identical in size, alignment and behavior to cl_half4. See section 6.1.5. */
+typedef union
+{
+    cl_half  CL_ALIGNED(8) s[4];
+#if __CL_HAS_ANON_STRUCT__
+    __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, w; };
+    __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, s3; };
+    __CL_ANON_STRUCT__ struct{ cl_half2 lo, hi; };
+#endif
+#if defined( __CL_HALF2__)
+    __cl_half2     v2[2];
+#endif
+#if defined( __CL_HALF4__)
+    __cl_half4     v4;
+#endif
+}cl_half3;
+
 typedef union
 {
     cl_half  CL_ALIGNED(8) s[4];
@@ -878,9 +951,6 @@ typedef union
     __cl_half4     v4;
 #endif
 }cl_half4;
-
-/* cl_half3 is identical in size, alignment and behavior to cl_half4. See section 6.1.5. */
-typedef  cl_half4  cl_half3;
 
 typedef union
 {
@@ -954,7 +1024,21 @@ typedef union
 }cl_int4;
 
 /* cl_int3 is identical in size, alignment and behavior to cl_int4. See section 6.1.5. */
-typedef  cl_int4  cl_int3;
+typedef union
+{
+    cl_int  CL_ALIGNED(16) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_int2 lo, hi; };
+#endif
+#if defined( __CL_INT2__)
+    __cl_int2     v2[2];
+#endif
+#if defined( __CL_INT4__)
+    __cl_int4     v4;
+#endif
+}cl_int3;
 
 typedef union
 {
@@ -1012,6 +1096,23 @@ typedef union
 #endif
 }cl_uint2;
 
+/* cl_uint3 is identical in size, alignment and behavior to cl_uint4. See section 6.1.5. */
+typedef union
+{
+    cl_uint  CL_ALIGNED(16) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_uint2 lo, hi; };
+#endif
+#if defined( __CL_UINT2__)
+    __cl_uint2     v2[2];
+#endif
+#if defined( __CL_UINT4__)
+    __cl_uint4     v4;
+#endif
+}cl_uint3;
+
 typedef union
 {
     cl_uint  CL_ALIGNED(16) s[4];
@@ -1027,9 +1128,6 @@ typedef union
     __cl_uint4     v4;
 #endif
 }cl_uint4;
-
-/* cl_uint3 is identical in size, alignment and behavior to cl_uint4. See section 6.1.5. */
-typedef  cl_uint4  cl_uint3;
 
 typedef union
 {
@@ -1086,6 +1184,23 @@ typedef union
 #endif
 }cl_long2;
 
+/* cl_long3 is identical in size, alignment and behavior to cl_long4. See section 6.1.5. */
+typedef union
+{
+    cl_long  CL_ALIGNED(32) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_long2 lo, hi; };
+#endif
+#if defined( __CL_LONG2__)
+    __cl_long2     v2[2];
+#endif
+#if defined( __CL_LONG4__)
+    __cl_long4     v4;
+#endif
+}cl_long3;
+
 typedef union
 {
     cl_long  CL_ALIGNED(32) s[4];
@@ -1101,9 +1216,6 @@ typedef union
     __cl_long4     v4;
 #endif
 }cl_long4;
-
-/* cl_long3 is identical in size, alignment and behavior to cl_long4. See section 6.1.5. */
-typedef  cl_long4  cl_long3;
 
 typedef union
 {
@@ -1161,6 +1273,23 @@ typedef union
 #endif
 }cl_ulong2;
 
+/* cl_ulong3 is identical in size, alignment and behavior to cl_ulong4. See section 6.1.5. */
+typedef union
+{
+    cl_ulong  CL_ALIGNED(32) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_ulong2 lo, hi; };
+#endif
+#if defined( __CL_ULONG2__)
+    __cl_ulong2     v2[2];
+#endif
+#if defined( __CL_ULONG4__)
+    __cl_ulong4     v4;
+#endif
+}cl_ulong3;
+
 typedef union
 {
     cl_ulong  CL_ALIGNED(32) s[4];
@@ -1176,9 +1305,6 @@ typedef union
     __cl_ulong4     v4;
 #endif
 }cl_ulong4;
-
-/* cl_ulong3 is identical in size, alignment and behavior to cl_ulong4. See section 6.1.5. */
-typedef  cl_ulong4  cl_ulong3;
 
 typedef union
 {
@@ -1237,6 +1363,23 @@ typedef union
 #endif
 }cl_float2;
 
+/* cl_float3 is identical in size, alignment and behavior to cl_float4. See section 6.1.5. */
+typedef union
+{
+    cl_float  CL_ALIGNED(16) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_float   x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_float   s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_float2  lo, hi; };
+#endif
+#if defined( __CL_FLOAT2__)
+    __cl_float2     v2[2];
+#endif
+#if defined( __CL_FLOAT4__)
+    __cl_float4     v4;
+#endif
+}cl_float3;
+
 typedef union
 {
     cl_float  CL_ALIGNED(16) s[4];
@@ -1252,9 +1395,6 @@ typedef union
     __cl_float4     v4;
 #endif
 }cl_float4;
-
-/* cl_float3 is identical in size, alignment and behavior to cl_float4. See section 6.1.5. */
-typedef  cl_float4  cl_float3;
 
 typedef union
 {
@@ -1312,6 +1452,23 @@ typedef union
 #endif
 }cl_double2;
 
+/* cl_double3 is identical in size, alignment and behavior to cl_double4. See section 6.1.5. */
+typedef union
+{
+    cl_double  CL_ALIGNED(32) s[4];
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_double2 lo, hi; };
+#endif
+#if defined( __CL_DOUBLE2__)
+    __cl_double2     v2[2];
+#endif
+#if defined( __CL_DOUBLE4__)
+    __cl_double4     v4;
+#endif
+}cl_double3;
+
 typedef union
 {
     cl_double  CL_ALIGNED(32) s[4];
@@ -1327,9 +1484,6 @@ typedef union
     __cl_double4     v4;
 #endif
 }cl_double4;
-
-/* cl_double3 is identical in size, alignment and behavior to cl_double4. See section 6.1.5. */
-typedef  cl_double4  cl_double3;
 
 typedef union
 {
