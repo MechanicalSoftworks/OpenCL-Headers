@@ -565,8 +565,8 @@ typedef union
 {
     cl_char  CL_ALIGNED(4) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_char2 lo, hi; };
 #endif
 #if defined( __CL_CHAR2__)
@@ -670,8 +670,8 @@ typedef union
 {
     cl_uchar  CL_ALIGNED(4) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_uchar2 lo, hi; };
 #endif
 #if defined( __CL_UCHAR2__)
@@ -743,8 +743,8 @@ typedef union
 {
     cl_short  CL_ALIGNED(8) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_short2 lo, hi; };
 #endif
 #if defined( __CL_SHORT2__)
@@ -832,8 +832,8 @@ typedef union
 {
     cl_ushort  CL_ALIGNED(8) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_ushort2 lo, hi; };
 #endif
 #if defined( __CL_USHORT2__)
@@ -921,8 +921,8 @@ typedef union
 {
     cl_half  CL_ALIGNED(8) s[4];
 #if __CL_HAS_ANON_STRUCT__
-    __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, w; };
-    __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, s3; };
+    __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, _w; };
+    __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, _s3; };
     __CL_ANON_STRUCT__ struct{ cl_half2 lo, hi; };
 #endif
 #if defined( __CL_HALF2__)
@@ -1025,8 +1025,8 @@ typedef union
 {
     cl_int  CL_ALIGNED(16) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_int2 lo, hi; };
 #endif
 #if defined( __CL_INT2__)
@@ -1098,8 +1098,8 @@ typedef union
 {
     cl_uint  CL_ALIGNED(16) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_uint2 lo, hi; };
 #endif
 #if defined( __CL_UINT2__)
@@ -1186,8 +1186,8 @@ typedef union
 {
     cl_long  CL_ALIGNED(32) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_long2 lo, hi; };
 #endif
 #if defined( __CL_LONG2__)
@@ -1275,8 +1275,8 @@ typedef union
 {
     cl_ulong  CL_ALIGNED(32) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_ulong2 lo, hi; };
 #endif
 #if defined( __CL_ULONG2__)
@@ -1365,8 +1365,8 @@ typedef union
 {
     cl_float  CL_ALIGNED(16) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_float   x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_float   s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_float   x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_float   s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_float2  lo, hi; };
 #endif
 #if defined( __CL_FLOAT2__)
@@ -1454,8 +1454,8 @@ typedef union
 {
     cl_double  CL_ALIGNED(32) s[4];
 #if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, _w; };
+   __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, _s3; };
    __CL_ANON_STRUCT__ struct{ cl_double2 lo, hi; };
 #endif
 #if defined( __CL_DOUBLE2__)
