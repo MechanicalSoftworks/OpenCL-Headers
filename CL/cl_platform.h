@@ -550,11 +550,19 @@ typedef unsigned int cl_GLenum;
 #endif
 
 /* Define cl_vector types */
+#ifdef __cplusplus
+#   define CL_DEFINE_VECTOR_ACCESSORS() \
+              auto& operator[](int i)       { return s[i]; } \
+        const auto& operator[](int i) const { return s[i]; }
+#else
+#   define CL_DEFINE_VECTOR_ACCESSORS()
+#endif
 
 /* ---- cl_charn ---- */
-typedef union
+typedef union _cl_char2
 {
     cl_char  CL_ALIGNED(2) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_char  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_char  s0, s1; };
@@ -566,9 +574,10 @@ typedef union
 }cl_char2;
 
 /* cl_char3 is identical in size, alignment and behavior to cl_char4. See section 6.1.5. */
-typedef union
+typedef union _cl_char3
 {
     cl_char  CL_ALIGNED(4) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, _s3; };
@@ -582,9 +591,10 @@ typedef union
 #endif
 }cl_char3;
 
-typedef union
+typedef union _cl_char4
 {
     cl_char  CL_ALIGNED(4) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, s3; };
@@ -598,9 +608,10 @@ typedef union
 #endif
 }cl_char4;
 
-typedef union
+typedef union _cl_char8
 {
     cl_char   CL_ALIGNED(8) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -617,9 +628,10 @@ typedef union
 #endif
 }cl_char8;
 
-typedef union
+typedef union _cl_char16
 {
     cl_char  CL_ALIGNED(16) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_char  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_char  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -641,9 +653,10 @@ typedef union
 
 
 /* ---- cl_ucharn ---- */
-typedef union
+typedef union cl_uchar2
 {
     cl_uchar  CL_ALIGNED(2) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uchar  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1; };
@@ -654,26 +667,11 @@ typedef union
 #endif
 }cl_uchar2;
 
-typedef union
-{
-    cl_uchar  CL_ALIGNED(4) s[4];
-#if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, s3; };
-   __CL_ANON_STRUCT__ struct{ cl_uchar2 lo, hi; };
-#endif
-#if defined( __CL_UCHAR2__)
-    __cl_uchar2     v2[2];
-#endif
-#if defined( __CL_UCHAR4__)
-    __cl_uchar4     v4;
-#endif
-}cl_uchar4;
-
 /* cl_uchar3 is identical in size, alignment and behavior to cl_uchar4. See section 6.1.5. */
-typedef union
+typedef union cl_uchar3
 {
     cl_uchar  CL_ALIGNED(4) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, _s3; };
@@ -687,9 +685,27 @@ typedef union
 #endif
 }cl_uchar3;
 
-typedef union
+typedef union cl_uchar4
+{
+    cl_uchar  CL_ALIGNED(4) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_uchar2 lo, hi; };
+#endif
+#if defined( __CL_UCHAR2__)
+    __cl_uchar2     v2[2];
+#endif
+#if defined( __CL_UCHAR4__)
+    __cl_uchar4     v4;
+#endif
+}cl_uchar4;
+
+typedef union cl_uchar8
 {
     cl_uchar   CL_ALIGNED(8) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -706,9 +722,10 @@ typedef union
 #endif
 }cl_uchar8;
 
-typedef union
+typedef union cl_uchar16
 {
     cl_uchar  CL_ALIGNED(16) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uchar  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_uchar  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -730,9 +747,10 @@ typedef union
 
 
 /* ---- cl_shortn ---- */
-typedef union
+typedef union _cl_short2
 {
     cl_short  CL_ALIGNED(4) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_short  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_short  s0, s1; };
@@ -744,9 +762,10 @@ typedef union
 }cl_short2;
 
 /* cl_short3 is identical in size, alignment and behavior to cl_short4. See section 6.1.5. */
-typedef union
+typedef union _cl_short3
 {
     cl_short  CL_ALIGNED(8) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, _s3; };
@@ -760,9 +779,10 @@ typedef union
 #endif
 }cl_short3;
 
-typedef union
+typedef union _cl_short4
 {
     cl_short  CL_ALIGNED(8) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, s3; };
@@ -776,9 +796,10 @@ typedef union
 #endif
 }cl_short4;
 
-typedef union
+typedef union _cl_short8
 {
     cl_short   CL_ALIGNED(16) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -795,9 +816,10 @@ typedef union
 #endif
 }cl_short8;
 
-typedef union
+typedef union _cl_short16
 {
     cl_short  CL_ALIGNED(32) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_short  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_short  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -819,9 +841,10 @@ typedef union
 
 
 /* ---- cl_ushortn ---- */
-typedef union
+typedef union cl_ushort2
 {
     cl_ushort  CL_ALIGNED(4) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ushort  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1; };
@@ -833,9 +856,10 @@ typedef union
 }cl_ushort2;
 
 /* cl_ushort3 is identical in size, alignment and behavior to cl_ushort4. See section 6.1.5. */
-typedef union
+typedef union cl_ushort3
 {
     cl_ushort  CL_ALIGNED(8) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, _s3; };
@@ -849,9 +873,10 @@ typedef union
 #endif
 }cl_ushort3;
 
-typedef union
+typedef union cl_ushort4
 {
     cl_ushort  CL_ALIGNED(8) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, s3; };
@@ -865,9 +890,10 @@ typedef union
 #endif
 }cl_ushort4;
 
-typedef union
+typedef union cl_ushort8
 {
     cl_ushort   CL_ALIGNED(16) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -884,9 +910,10 @@ typedef union
 #endif
 }cl_ushort8;
 
-typedef union
+typedef union cl_ushort16
 {
     cl_ushort  CL_ALIGNED(32) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ushort  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_ushort  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -908,9 +935,10 @@ typedef union
 
 
 /* ---- cl_halfn ---- */
-typedef union
+typedef union _cl_half2
 {
     cl_half  CL_ALIGNED(4) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
     __CL_ANON_STRUCT__ struct{ cl_half  x, y; };
     __CL_ANON_STRUCT__ struct{ cl_half  s0, s1; };
@@ -922,9 +950,10 @@ typedef union
 }cl_half2;
 
 /* cl_half3 is identical in size, alignment and behavior to cl_half4. See section 6.1.5. */
-typedef union
+typedef union _cl_half3
 {
     cl_half  CL_ALIGNED(8) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
     __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, _w; };
     __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, _s3; };
@@ -938,9 +967,10 @@ typedef union
 #endif
 }cl_half3;
 
-typedef union
+typedef union _cl_half4
 {
     cl_half  CL_ALIGNED(8) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
     __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, w; };
     __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, s3; };
@@ -954,9 +984,10 @@ typedef union
 #endif
 }cl_half4;
 
-typedef union
+typedef union _cl_half8
 {
     cl_half   CL_ALIGNED(16) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
     __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, w; };
     __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -973,9 +1004,10 @@ typedef union
 #endif
 }cl_half8;
 
-typedef union
+typedef union _cl_half16
 {
     cl_half  CL_ALIGNED(32) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
     __CL_ANON_STRUCT__ struct{ cl_half  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
     __CL_ANON_STRUCT__ struct{ cl_half  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -996,9 +1028,10 @@ typedef union
 }cl_half16;
 
 /* ---- cl_intn ---- */
-typedef union
+typedef union _cl_int2
 {
     cl_int  CL_ALIGNED(8) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_int  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_int  s0, s1; };
@@ -1009,26 +1042,11 @@ typedef union
 #endif
 }cl_int2;
 
-typedef union
-{
-    cl_int  CL_ALIGNED(16) s[4];
-#if __CL_HAS_ANON_STRUCT__
-   __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, w; };
-   __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, s3; };
-   __CL_ANON_STRUCT__ struct{ cl_int2 lo, hi; };
-#endif
-#if defined( __CL_INT2__)
-    __cl_int2     v2[2];
-#endif
-#if defined( __CL_INT4__)
-    __cl_int4     v4;
-#endif
-}cl_int4;
-
 /* cl_int3 is identical in size, alignment and behavior to cl_int4. See section 6.1.5. */
-typedef union
+typedef union _cl_int3
 {
     cl_int  CL_ALIGNED(16) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, _s3; };
@@ -1042,9 +1060,27 @@ typedef union
 #endif
 }cl_int3;
 
-typedef union
+typedef union _cl_int4
+{
+    cl_int  CL_ALIGNED(16) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
+#if __CL_HAS_ANON_STRUCT__
+   __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, w; };
+   __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, s3; };
+   __CL_ANON_STRUCT__ struct{ cl_int2 lo, hi; };
+#endif
+#if defined( __CL_INT2__)
+    __cl_int2     v2[2];
+#endif
+#if defined( __CL_INT4__)
+    __cl_int4     v4;
+#endif
+}cl_int4;
+
+typedef union _cl_int8
 {
     cl_int   CL_ALIGNED(32) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -1061,9 +1097,10 @@ typedef union
 #endif
 }cl_int8;
 
-typedef union
+typedef union _cl_int16
 {
     cl_int  CL_ALIGNED(64) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_int  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_int  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -1085,9 +1122,10 @@ typedef union
 
 
 /* ---- cl_uintn ---- */
-typedef union
+typedef union _cl_uint2
 {
     cl_uint  CL_ALIGNED(8) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uint  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1; };
@@ -1099,9 +1137,10 @@ typedef union
 }cl_uint2;
 
 /* cl_uint3 is identical in size, alignment and behavior to cl_uint4. See section 6.1.5. */
-typedef union
+typedef union _cl_uint3
 {
     cl_uint  CL_ALIGNED(16) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, _s3; };
@@ -1115,9 +1154,10 @@ typedef union
 #endif
 }cl_uint3;
 
-typedef union
+typedef union _cl_uint4
 {
     cl_uint  CL_ALIGNED(16) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, s3; };
@@ -1131,9 +1171,10 @@ typedef union
 #endif
 }cl_uint4;
 
-typedef union
+typedef union _cl_uint8
 {
     cl_uint   CL_ALIGNED(32) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -1150,9 +1191,10 @@ typedef union
 #endif
 }cl_uint8;
 
-typedef union
+typedef union _cl_uint16
 {
     cl_uint  CL_ALIGNED(64) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_uint  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_uint  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -1173,9 +1215,10 @@ typedef union
 }cl_uint16;
 
 /* ---- cl_longn ---- */
-typedef union
+typedef union _cl_long2
 {
     cl_long  CL_ALIGNED(16) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_long  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_long  s0, s1; };
@@ -1187,9 +1230,10 @@ typedef union
 }cl_long2;
 
 /* cl_long3 is identical in size, alignment and behavior to cl_long4. See section 6.1.5. */
-typedef union
+typedef union _cl_long3
 {
     cl_long  CL_ALIGNED(32) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, _s3; };
@@ -1203,9 +1247,10 @@ typedef union
 #endif
 }cl_long3;
 
-typedef union
+typedef union _cl_long4
 {
     cl_long  CL_ALIGNED(32) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, s3; };
@@ -1219,9 +1264,10 @@ typedef union
 #endif
 }cl_long4;
 
-typedef union
+typedef union _cl_long8
 {
     cl_long   CL_ALIGNED(64) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -1238,9 +1284,10 @@ typedef union
 #endif
 }cl_long8;
 
-typedef union
+typedef union _cl_long16
 {
     cl_long  CL_ALIGNED(128) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_long  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_long  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -1262,9 +1309,10 @@ typedef union
 
 
 /* ---- cl_ulongn ---- */
-typedef union
+typedef union _cl_ulong2
 {
     cl_ulong  CL_ALIGNED(16) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ulong  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1; };
@@ -1276,9 +1324,10 @@ typedef union
 }cl_ulong2;
 
 /* cl_ulong3 is identical in size, alignment and behavior to cl_ulong4. See section 6.1.5. */
-typedef union
+typedef union _cl_ulong3
 {
     cl_ulong  CL_ALIGNED(32) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, _s3; };
@@ -1292,9 +1341,10 @@ typedef union
 #endif
 }cl_ulong3;
 
-typedef union
+typedef union _cl_ulong4
 {
     cl_ulong  CL_ALIGNED(32) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, s3; };
@@ -1308,9 +1358,10 @@ typedef union
 #endif
 }cl_ulong4;
 
-typedef union
+typedef union _cl_ulong8
 {
     cl_ulong   CL_ALIGNED(64) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -1327,9 +1378,10 @@ typedef union
 #endif
 }cl_ulong8;
 
-typedef union
+typedef union _cl_ulong16
 {
     cl_ulong  CL_ALIGNED(128) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_ulong  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_ulong  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -1352,9 +1404,10 @@ typedef union
 
 /* --- cl_floatn ---- */
 
-typedef union
+typedef union _cl_float2
 {
     cl_float  CL_ALIGNED(8) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_float  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_float  s0, s1; };
@@ -1366,9 +1419,10 @@ typedef union
 }cl_float2;
 
 /* cl_float3 is identical in size, alignment and behavior to cl_float4. See section 6.1.5. */
-typedef union
+typedef union _cl_float3
 {
     cl_float  CL_ALIGNED(16) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_float   x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_float   s0, s1, s2, _s3; };
@@ -1382,9 +1436,10 @@ typedef union
 #endif
 }cl_float3;
 
-typedef union
+typedef union _cl_float4
 {
     cl_float  CL_ALIGNED(16) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_float   x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_float   s0, s1, s2, s3; };
@@ -1398,9 +1453,10 @@ typedef union
 #endif
 }cl_float4;
 
-typedef union
+typedef union _cl_float8
 {
     cl_float   CL_ALIGNED(32) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_float   x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_float   s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -1417,9 +1473,10 @@ typedef union
 #endif
 }cl_float8;
 
-typedef union
+typedef union _cl_float16
 {
     cl_float  CL_ALIGNED(64) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_float  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_float  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
@@ -1441,9 +1498,10 @@ typedef union
 
 /* --- cl_doublen ---- */
 
-typedef union
+typedef union _cl_double2
 {
     cl_double  CL_ALIGNED(16) s[2];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_double  x, y; };
    __CL_ANON_STRUCT__ struct{ cl_double s0, s1; };
@@ -1455,9 +1513,10 @@ typedef union
 }cl_double2;
 
 /* cl_double3 is identical in size, alignment and behavior to cl_double4. See section 6.1.5. */
-typedef union
+typedef union _cl_double3
 {
     cl_double  CL_ALIGNED(32) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, _w; };
    __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, _s3; };
@@ -1471,9 +1530,10 @@ typedef union
 #endif
 }cl_double3;
 
-typedef union
+typedef union _cl_double4
 {
     cl_double  CL_ALIGNED(32) s[4];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, s3; };
@@ -1487,9 +1547,10 @@ typedef union
 #endif
 }cl_double4;
 
-typedef union
+typedef union _cl_double8
 {
     cl_double   CL_ALIGNED(64) s[8];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, w; };
    __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, s3, s4, s5, s6, s7; };
@@ -1506,9 +1567,10 @@ typedef union
 #endif
 }cl_double8;
 
-typedef union
+typedef union _cl_double16
 {
     cl_double  CL_ALIGNED(128) s[16];
+    CL_DEFINE_VECTOR_ACCESSORS()
 #if __CL_HAS_ANON_STRUCT__
    __CL_ANON_STRUCT__ struct{ cl_double  x, y, z, w, __spacer4, __spacer5, __spacer6, __spacer7, __spacer8, __spacer9, sa, sb, sc, sd, se, sf; };
    __CL_ANON_STRUCT__ struct{ cl_double  s0, s1, s2, s3, s4, s5, s6, s7, s8, s9, sA, sB, sC, sD, sE, sF; };
